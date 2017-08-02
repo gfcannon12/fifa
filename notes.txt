@@ -1,0 +1,9 @@
+analysis
+
+summary stats for each var
+goals scored ~ age, fifa overall, position, stats
+assists ~ age, fifa overall, position, stats
+
+next level would consider teams points, goals scored, goals conceded
+
+does #10 or #7 have different characteristics
