@@ -1,4 +1,18 @@
-analysis
+Ideas for analysis
+
+Classification
+Can we predict the position of the player based on his in-game stats?
+Which stats are most predictive of a certain position?
+
+Regression
+Can we predict the real-world goals tally for a player based on his FIFA stats?
+Which stats are most predictive of scoring goals in the real-world?
+  I should probably look at strikers only
+
+Can we predict the real-world goals tally for a player based on his FIFA stats?
+Which stats are most predictive of scoring goals in the real-world?
+  I should probably exclude defenders
+
 
 summary stats for each var
 goals scored ~ age, fifa overall, position, stats
@@ -6,4 +20,4 @@ assists ~ age, fifa overall, position, stats
 
 next level would consider teams points, goals scored, goals conceded
 
-does #10 or #7 have different characteristics
+does #10 or #7 have different characteristics?
