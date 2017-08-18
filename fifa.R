@@ -51,5 +51,19 @@ View(merge[merge$Correct==0,])
 
 # How do I know which attributes are predictive of a position?
 
+# Linear Discrimination Analysis
+trainFactor <- as.factor(df.trainLabels)
+testFactor <- as.factor(df.testLables)
+library(MASS)
+lda_model <- lda(x=df.train, grouping=trainFactor)
+lda_predict <- predict(lda_model, newdata=df.test)
 
+# Assess the accuracy of the prediction
+# percent correct for each category of G
+ct <- table(testFactor, lda_predict$class)
+diag(prop.table(ct, 1))
+# total percent correct
+sum(diag(prop.table(ct)))
+# 85.7% accurate
 
+# 
