@@ -66,4 +66,13 @@ diag(prop.table(ct, 1))
 sum(diag(prop.table(ct)))
 # 85.7% accurate
 
-# 
+# Multinomial Logistic Regression https://stats.idre.ucla.edu/r/dae/multinomial-logistic-regression/
+library(nnet)
+df.trainLabels2 <- as.factor(df.trainLabels)
+df.trainLabels2 <- relevel(df.trainLabels2, ref='Goalie')
+reg <- multinom(df.trainLabels2 ~ ., data=df.train)
+summary(reg)
+z <- summary(reg)$coefficients/summary(reg)$standard.errors
+p <- (1 - pnorm(abs(z), 0, 1)) * 2
+p
+# These p-values all suggest that none of the values are significant
