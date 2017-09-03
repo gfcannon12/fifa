@@ -28,7 +28,7 @@ df.test <- df[train_test_split==2, 3:31]
 df.trainLabels <- df[train_test_split==1, 32]
 df.testLables <- df[train_test_split==2, 32]
 
-position_prediction <- knn(train = df.train, test = df.test, cl = df.trainLabels, k = 10)
+position_prediction <- knn(train = df.train, test = df.test, cl = df.trainLabels, k = 9)
 
 testLables <- data.frame(df.testLables)
 merge <- data.frame(position_prediction, testLables)
@@ -76,3 +76,30 @@ z <- summary(reg)$coefficients/summary(reg)$standard.errors
 p <- (1 - pnorm(abs(z), 0, 1)) * 2
 p
 # These p-values all suggest that none of the values are significant
+
+# What is the f statistic of the linear regression
+df.train2 <- df.train
+df.train2$Position <- df.trainLabels
+
+# Example of linear regression of how Position determines Ball  control
+lm1 <- lm(Ball_Control ~ Position, data = df.train2)
+summary(lm1)$fstatistic[1]
+
+# Creating a vector to store f statistic for each var
+exp_var_fstat <- as.numeric(rep(NA, times = 29))
+names(exp_var_fstat) <- names(df.train)
+
+exp_vars <- names(df.train)
+
+# Doing the linear regression for each var and storing f stats
+for (j in 1:length(exp_vars)) {
+  exp_var_fstat[exp_vars[j]] <- summary(lm(as.formula(paste(exp_vars[j], " ~ Position")), 
+                                           data = df.train2))$fstatistic[1]
+}
+
+exp_var_fstat[order(exp_var_fstat, decreasing = TRUE)]
+
+
+
+
+
